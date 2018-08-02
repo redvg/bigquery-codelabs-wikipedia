@@ -25,7 +25,7 @@ ORDER BY
   views DESC
 
 /*
-    3. returns total views for title which starts with 'red' for wikipedia, for all tables in 2011
+    3. returns total views for title with 'red' for wikipedia, for all tables in 2011
 */
 
 SELECT
@@ -41,6 +41,7 @@ GROUP BY
 ORDER BY
   views DESC
 
+
 /*
     4. returns total views for title with 'red' for wikipedia, for nov & dec 11
 */
@@ -55,6 +56,24 @@ WHERE
     OR _TABLE_SUFFIX = '12')
   AND wikimedia_project = "wp"
   AND REGEXP_CONTAINS(title, 'Red.*t')
+GROUP BY
+  title
+ORDER BY
+  views DESC
+
+/*
+    5. returns total views for title with 'red' for wikipedia, for dec 11
+        with legacy SQL
+*/
+
+SELECT
+  title,
+  SUM(views) views
+FROM
+  [bigquery-samples.wikimedia_pageviews.201112]
+WHERE
+  wikimedia_project = "wp"
+  AND REGEXP_MATCH(title, 'Red.*t')
 GROUP BY
   title
 ORDER BY
