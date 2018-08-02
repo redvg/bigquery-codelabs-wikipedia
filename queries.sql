@@ -78,3 +78,21 @@ GROUP BY
   title
 ORDER BY
   views DESC
+  
+/*
+    6. returns total views for title with 'red' for wikipedia, for all tables in 2011
+        with legacy SQL
+*/
+
+SELECT
+  title,
+  SUM(views) views
+FROM
+  TABLE_QUERY([bigquery-samples:wikimedia_pageviews],'REGEXP_MATCH(table_id, r"2011[\d]{2}")')
+WHERE
+  wikimedia_project = "wp"
+  AND REGEXP_MATCH(title, 'Red.*t')
+GROUP BY
+  title
+ORDER BY
+  views DESC
