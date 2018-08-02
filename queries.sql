@@ -25,7 +25,7 @@ ORDER BY
   views DESC
 
 /*
-    3. returns total views for title with 'red' for wikipedia, for all tables in 2011
+    3. returns total views for title which starts with 'red' for wikipedia, for all tables in 2011
 */
 
 SELECT
